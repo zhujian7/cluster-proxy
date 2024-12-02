@@ -114,14 +114,20 @@ spec:
     tasks:
       - name: init
         params:
-          - name: image-url
-            value: $(params.output-image)
-          - name: rebuild
-            value: $(params.rebuild)
-          - name: skip-checks
-            value: $(params.skip-checks)
+        - name: image-url
+          value: $(params.output-image)
+        - name: rebuild
+          value: $(params.rebuild)
+        - name: skip-checks
+          value: $(params.skip-checks)
         taskRef:
-          bundle: quay.io/redhat-appstudio-tekton-catalog/task-init:0.2@sha256:07b8eb6a9533525a397c296246d3eb6ec4771b520a1bfee817ce2b7ede25c43d
+          params:
+            - name: name
+              value: init
+            - name: bundle
+              value: quay.io/redhat-appstudio-tekton-catalog/task-init:0.2@sha256:07b8eb6a9533525a397c296246d3eb6ec4771b520a1bfee817ce2b7ede25c43d
+            - name: kind
+              value: task
           name: init
       - name: clone-repository
         params:
